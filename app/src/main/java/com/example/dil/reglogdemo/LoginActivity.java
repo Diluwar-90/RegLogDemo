@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     EditText etName, etPassword;
-    Button btnLogin;
+    Button btnLogin,qrLogin;
     String Name,Password;
     private static final String USER_NAME = "admin";
     private static final String PASSWORD = "admin";
@@ -24,6 +24,13 @@ public class LoginActivity extends AppCompatActivity {
         etName = findViewById(R.id.etName);
         etPassword = findViewById(R.id.etPass);
         btnLogin = findViewById(R.id.btnLogin);
+        qrLogin = findViewById(R.id.btnQrcodeLogin);
+        qrLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              startActivity(new Intent(LoginActivity.this,LoginWithQRcode.class));
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

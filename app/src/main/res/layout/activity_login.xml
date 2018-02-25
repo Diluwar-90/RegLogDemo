@@ -37,4 +37,15 @@
         android:layout_marginRight="20dp"
         android:background="@color/btn_signup_color"/>
 
+    <Button
+        android:id="@+id/btnQrcodeLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/btn_signup_color"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"
+        android:text="Login wit QRcode"/>
+
+
 </LinearLayout>
