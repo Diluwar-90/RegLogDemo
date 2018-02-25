@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 public class LoginWithQRcode extends AppCompatActivity implements View.OnClickListener{
     private Button buttonScan;
-    private TextView textViewName, textViewAddress;
+    //private TextView textViewName, textViewAddress;
     private IntentIntegrator qrScan;
     private static final String USER_NAME = "Diluwar";
     private static final String PASSWORD = "123456";
@@ -28,8 +28,8 @@ public class LoginWithQRcode extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_with_qrcode);
         buttonScan = (Button) findViewById(R.id.buttonScan);
-        textViewName = (TextView) findViewById(R.id.textViewName);
-        textViewAddress = (TextView) findViewById(R.id.textViewAddress);
+        /*textViewName = (TextView) findViewById(R.id.textViewName);
+        textViewAddress = (TextView) findViewById(R.id.textViewAddress);*/
 
         qrScan = new IntentIntegrator(this);
 
@@ -48,8 +48,13 @@ public class LoginWithQRcode extends AppCompatActivity implements View.OnClickLi
                     JSONObject object = new JSONObject(result.getContents());
                     UserName = object.getString("name");
                     Password = object.getString("password");
-                    textViewName.setText(UserName);
-                    textViewAddress.setText(Password);
+                    if (USER_NAME.equals(UserName) && PASSWORD.equals(Password)){
+                        Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(LoginWithQRcode.this,Details.class);
+                        startActivity(i);
+                    }
+                    /*textViewName.setText(UserName);
+                    textViewAddress.setText(Password);*/
 
 
                 } catch (JSONException e) {
@@ -68,11 +73,7 @@ public class LoginWithQRcode extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         qrScan.initiateScan();
-        if (USER_NAME.equals(UserName) && PASSWORD.equals(Password)){
-            Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_LONG).show();
-            Intent i = new Intent(LoginWithQRcode.this,Details.class);
-            startActivity(i);
-        }
+
 
     }
 }
